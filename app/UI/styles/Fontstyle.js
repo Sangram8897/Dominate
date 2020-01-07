@@ -1,36 +1,36 @@
 import {StyleSheet} from 'react-native';
-import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
+import {responsiveFontSize} from './../../utils/Responsive';
 const Fontstyle = StyleSheet.create({
   FONT_XXSMALL: {
-    fontSize: RFValue(8),
+    fontSize: responsiveFontSize(1),
     fontFamily: 'Poppins-Medium',
   },
   FONT_XSMALL: {
-    fontSize: RFValue(10),
+    fontSize: responsiveFontSize(2),
     fontFamily: 'Poppins-Medium',
   },
   FONT_SMALL: {
-    fontSize: RFValue(12),
+    fontSize: responsiveFontSize(3),
     fontFamily: 'Poppins-Medium',
   },
   FONT_MEDIUM: {
-    fontSize: RFValue(14),
+    fontSize: responsiveFontSize(4),
     fontFamily: 'Poppins-Medium',
   },
   FONT_LARGE: {
-    fontSize: RFValue(16),
+    fontSize: responsiveFontSize(5),
     fontFamily: 'Poppins-Medium',
   },
   FONT_XLARGE: {
-    fontSize: RFValue(18),
+    fontSize: responsiveFontSize(6),
     fontFamily: 'Poppins-Medium',
   },
   FONT_XXLARGE: {
-    fontSize: RFValue(20),
+    fontSize: responsiveFontSize(7),
     fontFamily: 'Poppins-Medium',
   },
   FONT_DXLARGE: {
-    fontSize: RFValue(22),
+    fontSize: responsiveFontSize(8),
     fontFamily: 'Poppins-Medium',
   },
 });
