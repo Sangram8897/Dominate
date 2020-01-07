@@ -2,8 +2,9 @@ const Strings = {
   str_App_name: 'Dominate',
 
   //Login Messages
-  str_sign_up: 'SIGN UP',
-  str_sign_in: 'SIGN IN',
+  str_auth_msg: 'Create Your workspace!',
+  str_sign_up: 'Sign Up',
+  str_sign_in: 'Login',
   str_username: 'Username',
   str_password: 'Password',
 };

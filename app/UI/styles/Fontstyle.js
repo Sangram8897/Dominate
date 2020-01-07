@@ -6,31 +6,31 @@ const Fontstyle = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
   },
   FONT_XSMALL: {
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveFontSize(1.4),
     fontFamily: 'Poppins-Medium',
   },
   FONT_SMALL: {
-    fontSize: responsiveFontSize(3),
+    fontSize: responsiveFontSize(1.8),
     fontFamily: 'Poppins-Medium',
   },
   FONT_MEDIUM: {
-    fontSize: responsiveFontSize(4),
+    fontSize: responsiveFontSize(2.2),
     fontFamily: 'Poppins-Medium',
   },
   FONT_LARGE: {
-    fontSize: responsiveFontSize(5),
+    fontSize: responsiveFontSize(2.6),
     fontFamily: 'Poppins-Medium',
   },
   FONT_XLARGE: {
-    fontSize: responsiveFontSize(6),
+    fontSize: responsiveFontSize(3),
     fontFamily: 'Poppins-Medium',
   },
   FONT_XXLARGE: {
-    fontSize: responsiveFontSize(7),
+    fontSize: responsiveFontSize(3.4),
     fontFamily: 'Poppins-Medium',
   },
   FONT_DXLARGE: {
-    fontSize: responsiveFontSize(8),
+    fontSize: responsiveFontSize(3.8),
     fontFamily: 'Poppins-Medium',
   },
 });
