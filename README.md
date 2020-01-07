@@ -1,3 +1,5 @@
+# Dominate
+mobile Application
 # Social
 
 Simple installation command needed For window 10 
@@ -28,3 +30,6 @@ npm start -- --reset-cache
 
 delete node modules
 rm -rf node_modules
+
+
+
