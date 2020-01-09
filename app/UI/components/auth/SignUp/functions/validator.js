@@ -1,4 +1,4 @@
-export const signupData = data => {
+export const signupFields_Validation = data => {
   if (
     !data._firstname &&
     !data._lastname &&

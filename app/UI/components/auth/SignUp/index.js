@@ -11,7 +11,7 @@ import Color from '../../../styles/Color';
 import Button from '../../../reusables/Button';
 import Fontstyle from '../../../styles/Fontstyle';
 
-import {signupData} from '../../../model/signup';
+import {signupFields_Validation} from './functions/validator';
 import {SnackMessage, NONetworkAlert} from '../../../../functions/message';
 
 import Actions from 'actions';
@@ -30,12 +30,12 @@ const SignUp = () => {
   });
 
   login = async () => {
-    dispatch(Actions.SignUp_LOADING());
+    dispatch(Actions.Plans_LOADING());
     // try {
     //   if (!netInfo.isConnected) {
     //     return NONetworkAlert();
     //   }
-    //   //signupData(_signupdata);
+    //   //signupFields_Validation(_signupdata);
     // } catch (err) {
     //   SnackMessage(err.message);
     // }

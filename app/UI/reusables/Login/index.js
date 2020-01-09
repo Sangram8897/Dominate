@@ -99,12 +99,12 @@ import Fontstyle from '../../../styles/Fontstyle';
 import Actions from 'actions';
 
 import {loginFields_Validation} from './functions/validator';
-import {SnackMessage, NONetworkAlert} from '../../../../functions/message';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const netInfo = useNetInfo();
 
+  const [_email, set_email] = useState('');
+  const [_password, set_password] = useState('');
   const [_logindata, set_logindata] = useState({
     _workspace: 'domain100',
     _email: 'akshaynagargoje0716@gmail.com',
@@ -112,14 +112,7 @@ const Login = () => {
   });
 
   login = async () => {
-    try {
-      if (!netInfo.isConnected) {
-        return NONetworkAlert();
-      }
-      dispatch(Actions.Login_LOADING(loginFields_Validation(_logindata)));
-    } catch (err) {
-      SnackMessage(err.message);
-    }
+    dispatch(Actions.Login_LOADING());
   };
 
   return (
