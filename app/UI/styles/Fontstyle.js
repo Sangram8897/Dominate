@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {responsiveFontSize} from './../../utils/Responsive';
+import {responsiveFontSize} from '../../functions/Responsive';
 const Fontstyle = StyleSheet.create({
   FONT_XXSMALL: {
     fontSize: responsiveFontSize(1),

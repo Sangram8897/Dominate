@@ -1,4 +1,4 @@
-import {responsiveHeight} from './../../utils/Responsive';
+import {responsiveHeight} from '../../functions/Responsive';
 
 const Size = {
   OF1: responsiveHeight(1),

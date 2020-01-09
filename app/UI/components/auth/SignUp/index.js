@@ -1,19 +1,24 @@
 /* eslint-disable no-undef */
 import React, {useState, useCallback, useEffect} from 'react';
 import {useNetInfo} from '@react-native-community/netinfo';
+import {useSelector, useDispatch} from 'react-redux';
 import {View, Text} from 'react-native';
-import Input from '../../reusables/Input';
+import Input from '../../../reusables/Input';
 
-import Size from '../../styles/Size';
-import Strings from '../../styles/String';
-import Color from '../../styles/Color';
-import Button from '../../reusables/Button';
-import Fontstyle from '../../styles/Fontstyle';
-import {signupData} from '../../model/signup';
-import {SnackMessage,NONetworkAlert} from '../../../utils/message';
+import Size from '../../../styles/Size';
+import Strings from '../../../styles/String';
+import Color from '../../../styles/Color';
+import Button from '../../../reusables/Button';
+import Fontstyle from '../../../styles/Fontstyle';
+
+import {signupData} from '../../../model/signup';
+import {SnackMessage, NONetworkAlert} from '../../../../functions/message';
+
+import Actions from 'actions';
 
 const SignUp = () => {
   const netInfo = useNetInfo();
+  const dispatch = useDispatch();
 
   const [_signupdata, set_signupdata] = useState({
     _firstname: '',
@@ -25,14 +30,15 @@ const SignUp = () => {
   });
 
   login = async () => {
-    try {
-      if (!netInfo.isConnected) {
-        return NONetworkAlert();
-      }
-      signupData(_signupdata);
-    } catch (err) {
-      SnackMessage(err.message);
-    }
+    dispatch(Actions.SignUp_LOADING());
+    // try {
+    //   if (!netInfo.isConnected) {
+    //     return NONetworkAlert();
+    //   }
+    //   //signupData(_signupdata);
+    // } catch (err) {
+    //   SnackMessage(err.message);
+    // }
   };
 
   return (

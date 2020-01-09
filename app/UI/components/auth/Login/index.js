@@ -79,15 +79,20 @@
 
 // export default Login;
 
+
+
+//akshaynagargoje0716@gmail.com
+//123456
+//domain100
 import React, {useState, useCallback, useEffect} from 'react';
 import {View, Text} from 'react-native';
-import Input from '../../reusables/Input';
+import Input from '../../../reusables/Input';
 
-import Size from '../../styles/Size';
-import Strings from '../../styles/String';
-import Color from '../../styles/Color';
-import Button from '../../reusables/Button';
-import Fontstyle from '../../styles/Fontstyle';
+import Size from '../../../styles/Size';
+import Strings from '../../../styles/String';
+import Color from '../../../styles/Color';
+import Button from '../../../reusables/Button';
+import Fontstyle from '../../../styles/Fontstyle';
 
 const Login = () => {
   const [_workspace, set_workspace] = useState('');
