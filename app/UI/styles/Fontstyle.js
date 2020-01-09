@@ -13,6 +13,10 @@ const Fontstyle = StyleSheet.create({
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'Poppins-Medium',
   },
+  FONT_MEDIUM_SMALL: {
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'Poppins-Medium',
+  },
   FONT_MEDIUM: {
     fontSize: responsiveFontSize(2.2),
     fontFamily: 'Poppins-Medium',

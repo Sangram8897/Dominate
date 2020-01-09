@@ -7,5 +7,6 @@ const Strings = {
   str_sign_in: 'Login',
   str_username: 'Username',
   str_password: 'Password',
+  str_forgot_password: 'Forgot Password ?',
 };
 export default Strings;

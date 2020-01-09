@@ -11,6 +11,8 @@ const Size = {
   OF8: responsiveHeight(8),
   OF9: responsiveHeight(9),
   OF10: responsiveHeight(10),
+  OF11: responsiveHeight(11),
+  OF12: responsiveHeight(12),
   OF15: responsiveHeight(15),
   OF20: responsiveHeight(20),
   OF25: responsiveHeight(25),
@@ -19,6 +21,8 @@ const Size = {
   OF40: responsiveHeight(40),
   OF45: responsiveHeight(45),
   OF50: responsiveHeight(50),
+  OF65: responsiveHeight(65),
+  OF75: responsiveHeight(75),
 };
 
 export default Size;
