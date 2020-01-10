@@ -4,6 +4,5 @@ import Login from '../../UI/components/auth/Login/reducer';
 
 const rootReducer = combineReducers({
   SignUp,
-  Login,
 });
 export default rootReducer;

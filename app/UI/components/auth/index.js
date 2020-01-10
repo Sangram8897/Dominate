@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
@@ -19,39 +20,41 @@ import Color from '../../styles/Color';
 import NoInternetBar from '../../reusables/NoInternetBar';
 const Auth = () => {
   const [_switch, set_switch] = useState(true);
+  const [_loading, set_loading] = useState(false);
+
+  setloading = (value = false) => {
+    set_loading(value);
+  };
+
   return (
     <ImageBackground
       source={require('images/authbackImage/background1.png')}
       style={{height: '100%', width: '100%', resizeMode: 'contain'}}>
-          <Container isLoading={false}>
-        
-        <Text
-          style={[
-            Fontstyle.FONT_SMALL,
-            {color: 'white', marginVertical: Size.OF2,marginLeft:Size.OF2},
-          ]}>
-          {Strings.str_App_name}
-        </Text>
+      <Text
+        style={[
+          Fontstyle.FONT_SMALL,
+          {color: 'white', marginVertical: Size.OF2, marginLeft: Size.OF2},
+        ]}>
+        {Strings.str_App_name}
+      </Text>
 
-        <Text
-          style={[
-            Fontstyle.FONT_XXLARGE,
-            {color: 'white', textAlign: 'center'},
-          ]}>
-          {Strings.str_auth_msg}
-        </Text>
-        <ScrollView style={{width:'95%',alignSelf:'center'}}>
-          <View
-            style={{
-              height: _switch?Size.OF65:Size.OF75,
-              overflow: 'hidden',
-              width: '95%',
-              alignSelf: 'center',
-              elevation: 10,
-              borderRadius: 10,
-              backgroundColor: Color.white,
-              marginVertical: _switch? Size.OF2:Size.OF1,
-            }}>
+      <Text
+        style={[Fontstyle.FONT_XXLARGE, {color: 'white', textAlign: 'center'}]}>
+        {Strings.str_auth_msg}
+      </Text>
+      <ScrollView style={{width: '95%', alignSelf: 'center'}}>
+        <View
+          style={{
+            height: _switch ? Size.OF65 : Size.OF75,
+            overflow: 'hidden',
+            width: '95%',
+            alignSelf: 'center',
+            elevation: 10,
+            borderRadius: 10,
+            backgroundColor: Color.white,
+            marginVertical: _switch ? Size.OF2 : Size.OF1,
+          }}>
+          <Container isLoading={_loading}>
             <View
               style={{
                 height: Size.OF10,
@@ -69,12 +72,14 @@ const Auth = () => {
                 onPress={() => set_switch(false)}
               />
             </View>
-            {_switch ? <Login /> : <SignUp />}
-          </View>
-        </ScrollView>
-        
-     
-      </Container>
+            {_switch ? (
+              <Login setloading={setloading} />
+            ) : (
+              <SignUp setloading={setloading} />
+            )}
+          </Container>
+        </View>
+      </ScrollView>
     </ImageBackground>
   );
 };

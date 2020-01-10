@@ -1,17 +1,18 @@
 import Actions from 'actions';
 import {put, call, all, fork, take, takeLatest} from 'redux-saga/effects';
 
-import {TAG} from '../action/index';
+import {TAG} from './../action/SignUp';
+import {PLANS} from './../action/Plans';
 
 export function* callRequest({payload}) {
   console.warn('in saga');
   // yield call(newlogin, action);
 }
 
-function* watchLogin() {
+function* watchSignUp() {
   yield takeLatest(TAG.LOADING, callRequest);
 }
 
-export default function* Login() {
-  yield all([fork(watchLogin)]);
+export default function* SignUp() {
+  yield all([fork(watchSignUp)]);
 }

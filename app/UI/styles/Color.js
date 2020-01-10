@@ -18,5 +18,7 @@ const Color = {
   light_voilet: '',
   voilet: '',
   dark_voilet: '',
+
+  tranparent: 'transparent',
 };
 export default Color;

@@ -1,4 +1,4 @@
-import {TAG} from '../action';
+import {TAG} from '../action/SignUp';
 
 const getDefaultState = () => ({loading: false, data: null, error: null});
 

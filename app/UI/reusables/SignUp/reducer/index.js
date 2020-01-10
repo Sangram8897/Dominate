@@ -1,8 +1,8 @@
-import {TAG} from '../action';
+import {TAG} from '../action/SignUp';
 
 const getDefaultState = () => ({loading: false, data: null, error: null});
 
-const Login = (state, action) => {
+const SignUp = (state, action) => {
   if (typeof state === 'undefined') {
     return getDefaultState();
   }
@@ -32,4 +32,4 @@ const Login = (state, action) => {
       return state;
   }
 };
-export default Login;
+export default SignUp;

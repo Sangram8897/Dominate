@@ -24,8 +24,9 @@ const Container = props => {
 };
 
 const styles = {
+  // backgroundColor: 'rgba(0, 0, 0, 0.65)',
   fullScreen: {
-    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    backgroundColor: 'rgba(10, 0, 0, 0.2)',
     justifyContent: 'center',
     ...StyleSheet.absoluteFillObject,
     zIndex: 9,

@@ -91,7 +91,7 @@ const SignUp = props => {
       if (!netInfo.isConnected) {
         return NONetworkAlert();
       }
-      dispatch(Actions.SignUp_LOADING(plan_Checker(_plans, _signupdata)));
+      console.warn(plan_Checker(_plans, _signupdata));
     } catch (err) {
       SnackMessage(err.message);
     }

@@ -11,10 +11,10 @@ export const loginFields_Validation = data => {
   if (!data._password) {
     throw new Error('Please enter your Password');
   }
-  const loginData = {
-    email: data._email,
-    password: data._password,
-    errors: {},
+
+  const result = {
+    workspace: data._workspace,
+    loginData: {email: data._email, password: data._password, errors: {}},
   };
-  return loginData;
+  return result;
 };
