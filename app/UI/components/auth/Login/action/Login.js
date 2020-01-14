@@ -1,27 +1,18 @@
-const NAME = 'LOGIN';
+const NAME = 'AUTH';
 
 export const TAG = {
-  LOADING: `${NAME}/LOADING`,
-  SUCCESS: `${NAME}/SUCCESS`,
-  ERROR: `${NAME}/ERROR`,
-  CLEAR: `${NAME}/CLEAR`,
+  LOADING: `${NAME}/LO`,
 };
 
-export const Login_LOADING = req => ({
+export const LOGIN = (req_data, onSuccess, onError) => ({
+  type: TAG.LOADING,
+  req_data,
+  onSuccess,
+  onError,
+});
+
+export const LOGOUT = req => ({
   type: TAG.LOADING,
   req,
 });
 
-export const Login_SUCCESS = result => ({
-  type: TAG.SUCCESS,
-  result,
-});
-
-export const Login_ERROR = err => ({
-  type: TAG.ERROR,
-  err,
-});
-
-export const Login_CLEAR = () => ({
-  type: TAG.CLEAR,
-});

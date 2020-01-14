@@ -8,6 +8,7 @@ import {
   ScrollView,
   ImageBackground,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import Container from '../../reusables/Container';
 
@@ -18,18 +19,23 @@ import SignUp from './SignUp';
 import Login from './Login';
 import Color from '../../styles/Color';
 import NoInternetBar from '../../reusables/NoInternetBar';
-const Auth = () => {
+import {NavigationEvents} from 'react-navigation';
+const Auth = props => {
   const [_switch, set_switch] = useState(true);
   const [_loading, set_loading] = useState(false);
+  const [_datain, set_datain] = useState(false);
 
   setloading = (value = false) => {
     set_loading(value);
   };
-
+  set_continue = () => {
+    set_switch(true);
+  };
   return (
     <ImageBackground
       source={require('images/authbackImage/background1.png')}
       style={{height: '100%', width: '100%', resizeMode: 'contain'}}>
+      <NavigationEvents onWillFocus={() => set_continue()} />
       <Text
         style={[
           Fontstyle.FONT_SMALL,
@@ -73,9 +79,9 @@ const Auth = () => {
               />
             </View>
             {_switch ? (
-              <Login setloading={setloading} />
+              <Login setloading={setloading} navigation={props.navigation} />
             ) : (
-              <SignUp setloading={setloading} />
+              <SignUp setloading={setloading} navigation={props.navigation} />
             )}
           </Container>
         </View>

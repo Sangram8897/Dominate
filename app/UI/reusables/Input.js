@@ -15,6 +15,7 @@ const Input = props => {
           style={[Fontstyle.FONT_SMALL, styles.input]}
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable
+          onSubmitEditing={props.onSubmitEditing}
           maxLength={40}
         />
       </View>
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     color: Color.gray,
     alignSelf: 'center',
     height: Size.OF3,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderColor: Color.light_gray,
   },
   container: {

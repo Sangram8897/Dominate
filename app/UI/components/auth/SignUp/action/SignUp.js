@@ -13,16 +13,7 @@ export const SignUp_LOADING = (data, onSuccess, onError) => ({
   onError,
 });
 
-export const SignUp_SUCCESS = result => ({
-  type: TAG.SUCCESS,
-  result,
-});
-
-export const SignUp_ERROR = err => ({
-  type: TAG.ERROR,
-  err,
-});
-
-export const SignUp_CLEAR = () => ({
-  type: TAG.CLEAR,
+export const SignUp_COMPLETE = payload => ({
+  type: 'SIGNUP_DATA',
+  payload,
 });

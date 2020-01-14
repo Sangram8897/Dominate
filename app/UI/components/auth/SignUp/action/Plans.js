@@ -6,7 +6,7 @@ export const TAG = {
   ERROR: `${NAME}/ERROR`,
   CLEAR: `${NAME}/CLEAR`,
 };
-export const Plans_LOADING = ( onSuccess,onError) => ({
+export const Plans_LOADING = (onSuccess, onError) => ({
   type: TAG.LOADING,
   onSuccess,
   onError,

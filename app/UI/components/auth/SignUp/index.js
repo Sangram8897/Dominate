@@ -60,19 +60,20 @@ const SignUp = props => {
         if (!netInfo.isConnected) {
           return NONetworkAlert();
         }
-        dispatch(Actions.Plans_LOADING(onPlans_Load, onPlans_Fail));
+        dispatch(Actions.Plans_LOADING(onPlans_SUCCESS, onPlans_FAIL));
       } catch (err) {
+        props.setloading(false);
         SnackMessage(err.message);
       }
     }
   }, [_switch]);
 
-  onPlans_Load = plans => {
+  onPlans_SUCCESS = plans => {
     props.setloading(false);
     set_plans(plans);
   };
 
-  onPlans_Fail = () => {
+  onPlans_FAIL = () => {
     props.setloading(false);
   };
 
@@ -87,16 +88,32 @@ const SignUp = props => {
   };
 
   signup = () => {
+    props.setloading(true);
     try {
       if (!netInfo.isConnected) {
         return NONetworkAlert();
       }
-      dispatch(Actions.SignUp_LOADING(plan_Checker(_plans, _signupdata)));
+      dispatch(
+        Actions.SignUp_LOADING(
+          plan_Checker(_plans, _signupdata),
+          onSignup_SUCCESS,
+          onSignup_FAIL,
+        ),
+      );
     } catch (err) {
+      props.setloading(false);
       SnackMessage(err.message);
     }
   };
+  onSignup_SUCCESS = res => {
+    props.setloading(false);
+    props.navigation.navigate('Welcome', {data: res});
+  };
 
+  onSignup_FAIL = () => {
+    props.setloading(false);
+    console.warn('fail');
+  };
   return (
     <View style={{flex: 1, width: '100%'}}>
       {_switch && (
@@ -174,7 +191,7 @@ const SignUp = props => {
               }}
               backColor={Color.primary2}
               borderColor={Color.primary2}
-              label={Strings.str_sign_in}
+              label={Strings.str_sign_up_next}
               textColor={Color.white}
             />
           </View>
@@ -279,6 +296,25 @@ const SignUp = props => {
           </ScrollView>
           <View
             style={{
+              flexDirection: 'row',
+              width:'100%',
+              justifyContent:'space-around',
+              alignItems:'center'
+            }}
+          >
+                     <View
+            style={{
+              height: Size.OF8,
+              width: Size.OF8,
+              justifyContent: 'center',
+              marginVertical: Size.OF1,
+              backgroundColor:Color.primary2,
+              borderRadius:30,
+            }}>
+          
+          </View>
+                     <View
+            style={{
               height: Size.OF10,
               width: '50%',
               justifyContent: 'center',
@@ -290,10 +326,13 @@ const SignUp = props => {
               }}
               backColor={Color.primary2}
               borderColor={Color.primary2}
-              label={Strings.str_sign_in}
+              label={Strings.str_sign_up}
               textColor={Color.white}
             />
           </View>
+          </View>
+          
+ 
         </View>
       )}
     </View>
@@ -301,7 +340,3 @@ const SignUp = props => {
 };
 
 export default SignUp;
-
-{
-  /*  */
-}

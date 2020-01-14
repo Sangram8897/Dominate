@@ -30,7 +30,6 @@ export const signupFields_Validation = data => {
   return data;
 };
 
-
 export const set_Users = no => {
   if (no == 1) {
     return '1';
@@ -47,7 +46,6 @@ export const set_Users = no => {
   return null;
 };
 
-
 export const plan_Checker = (plans, signupdata) => {
   const isPlan_selected = plans.some(item => {
     return item.isEnterprise === true;
@@ -61,13 +59,21 @@ export const plan_Checker = (plans, signupdata) => {
   });
 
   const result = {
-    organizationName: signupdata._workspace,
-    workspaceId: signupdata._workspace,
-    billingType: data[0].label,
-    defaultUserEmailId: signupdata._companyemail,
-    defaultUserPassword: signupdata._password,
-    defaultUserFirstName: signupdata._firstname,
-    defaultUserLastName: signupdata._lastname,
+    // organizationName: signupdata._workspace.toLowerCase(),
+    // workspaceId: signupdata._workspace.toLowerCase(),
+    // billingType: data[0].label,
+    // defaultUserEmailId: signupdata._companyemail,
+    // defaultUserPassword: signupdata._password,
+    // defaultUserFirstName: signupdata._firstname,
+    // defaultUserLastName: signupdata._lastname,
+    // features: ['call'],
+    organizationName: 'domain125',
+    workspaceId: 'domain125',
+    billingType: 'SPACESHIP',
+    defaultUserEmailId: 'sangrampaste9788@gmail.com',
+    defaultUserPassword: '123456',
+    defaultUserFirstName: 'Sangram',
+    defaultUserLastName: 'Paste',
     features: ['call'],
   };
   return result;
