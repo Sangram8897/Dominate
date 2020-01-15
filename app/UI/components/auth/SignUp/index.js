@@ -30,7 +30,7 @@ const SignUp = () => {
   });
 
   login = async () => {
-    dispatch(Actions.SignUp_LOADING());
+    dispatch(Actions.LOGOUT());
     // try {
     //   if (!netInfo.isConnected) {
     //     return NONetworkAlert();

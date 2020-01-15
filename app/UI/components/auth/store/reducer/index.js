@@ -2,7 +2,7 @@ import {TAG} from '../action/index';
 
 const getDefaultState = () => ({
   loading: false,
-  userData: null,
+  user: null,
   token: null,
   error: null,
 });
@@ -14,7 +14,7 @@ const AuthData = (state, action) => {
   switch (action.type) {
     case TAG.IN:
       return {
-        user: action.payload,
+        user: {...state.user, ...action.payload},
       };
     case 'SIGNUP_DATA':
       return {

@@ -20,7 +20,7 @@ import NoInternetBar from '../../reusables/NoInternetBar';
 const Auth = props => {
   const [_switch, set_switch] = useState(true);
   const [_loading, set_loading] = useState(false);
-   setloading = (value = false) => {
+  setloading = (value = false) => {
     set_loading(value);
   };
   return (
@@ -49,23 +49,26 @@ const Auth = props => {
             {Strings.str_auth_msg}
           </Text>
 
-          
-            <View
-              style={{width:'90%',alignSelf:'center', justifyContent: 'center', alignItems: 'center'}}>
-              <ScrollView style={{width: '100%'}}>
-              
-                <View
-                  style={{
-                    height: _switch ? Size.OF65 : Size.OF75,
-                    marginVertical: 10,
-                    overflow: 'hidden',
-                    width: '100%',
-                    backgroundColor: Color.white,
-                    elevation: 5,
-                    borderRadius: 15,
-                    alignSelf: 'center',
-                  }}>
-                    <Container isLoading={_loading}>
+          <View
+            style={{
+              width: '100%',
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <ScrollView style={{width: '100%'}}>
+              <View
+                style={{
+                  height: _switch ? Size.OF65 : Size.OF75,
+                  marginVertical: 10,
+                  overflow: 'hidden',
+                  width: '90%',
+                  backgroundColor: Color.white,
+                  elevation: 5,
+                  borderRadius: 15,
+                  alignSelf: 'center',
+                }}>
+                <Container isLoading={_loading}>
                   <View
                     style={{
                       height: Size.OF10,
@@ -84,16 +87,14 @@ const Auth = props => {
                     />
                   </View>
                   {_switch ? (
-              <Login setloading={setloading}  />
-            ) : (
-              <SignUp setloading={setloading}  />
-            )}
-                  </Container>
-                </View>
-                
-              </ScrollView>
-            </View>
-          
+                    <Login setloading={setloading} />
+                  ) : (
+                    <SignUp setloading={setloading} />
+                  )}
+                </Container>
+              </View>
+            </ScrollView>
+          </View>
         </View>
       </Container>
     </ImageBackground>

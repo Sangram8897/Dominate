@@ -39,11 +39,8 @@ const Login = props => {
       _logindata,
       netInfo.isConnected,
     );
-    const result_data = await setLogin(valid_data);
-    if (result_data.exp) {
-      dispatch(Actions.LOGIN(result_data));
-      console.warn();
-    }
+    dispatch(Actions.AUTHENTICATE(valid_data));
+    console.warn();
     props.setloading(false);
   };
 

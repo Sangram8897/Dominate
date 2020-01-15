@@ -1,7 +1,5 @@
-import * as SignUp from 'components/auth/SignUp/action';
-import * as Login from '../../UI/components/auth/action/index';
+import * as AuthActions from '../../UI/components/auth/store/action/index';
 
 export default {
-  ...SignUp,
-  ...Login,
+  ...AuthActions,
 };
