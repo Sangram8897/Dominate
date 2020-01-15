@@ -23,6 +23,8 @@ const Size = {
   OF50: responsiveHeight(50),
   OF65: responsiveHeight(65),
   OF75: responsiveHeight(75),
+  OF80: responsiveHeight(80),
+  OF85: responsiveHeight(85),
 };
 
 export default Size;

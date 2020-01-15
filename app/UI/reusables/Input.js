@@ -7,24 +7,24 @@ import Color from '../styles/Color';
 const Input = props => {
   return (
     <View style={styles.container}>
-      <View style={styles.view1}>
+   
         <Text style={Fontstyle.FONT_SMALL}>{props.label}</Text>
-      </View>
-      <View style={{flex: 1.2}}>
+    
+     
         <TextInput
           style={[Fontstyle.FONT_SMALL, styles.input]}
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable
           maxLength={40}
         />
-      </View>
+     
     </View>
   );
 };
 const styles = StyleSheet.create({
   input: {
     flex: 1,
-    width: '90%',
+    width: '100%',
     color: Color.gray,
     alignSelf: 'center',
     height: Size.OF3,
@@ -34,13 +34,9 @@ const styles = StyleSheet.create({
   container: {
     height: Size.OF10,
     flex: 1,
+    width:'90%',
+    alignSelf:'center',
+    justifyContent:'center',
   },
-  view1: {
-    flex: 1,
-    width: '90%',
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
-  },
-  view2: {},
 });
 export default Input;

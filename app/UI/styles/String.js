@@ -30,8 +30,13 @@ const Strings = {
   str_sign_up_thankyou: 'Thank you!',
   str_sign_up_signup_success:
     'You have signed up with Dominate with the following workspace.',
-  str_sign_up_workspacename: 'Workspace Name',
-  str_sign_up_workspaceURL: 'Workspace URL:',
+  str_sign_up_workspacename: 'Workspace Name :',
+  str_sign_up_workspaceURL: 'Workspace URL :',
   str_sign_up_copyright2019: 'Copyright 2019',
+  //**Auth Message */
+  str_workspace_not_exist: 'Workspace Does not Exist',
+  str_valid_email: 'Please Enter valid Email Address',
+
+
 };
 export default Strings;

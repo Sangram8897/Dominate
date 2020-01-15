@@ -1,9 +1,7 @@
 import {combineReducers} from 'redux';
-import SignUp from '../../UI/components/auth/SignUp/reducer';
-import Login from '../../UI/components/auth/Login/reducer';
+import AuthData from '../../UI/components/auth/reducer';
 
 const rootReducer = combineReducers({
-  SignUp,
-  Login,
+  AuthData,
 });
 export default rootReducer;
