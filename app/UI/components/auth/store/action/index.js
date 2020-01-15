@@ -23,13 +23,12 @@ export const AUTHENTICATE = data => async dispatch => {
   const result = await postData(`${url}/public/login`, data.loginData, headers);
   if (result.status === 200) {
     const res = await result.json();
+    const TokenData = await jwt_decode(JSON.stringify(res.token));
     const userData = {
       token: res.token,
       refresh_token: res.refresh_token,
-      tokenExpiresOn: res.tokenExpiresOn,
+      exp: TokenData.exp,
     };
-    console.warn(res.refresh_token);
-    // const userData = jwt_decode(JSON.stringify(res.token));
     AsyncStorage.setItem('userData', JSON.stringify(userData));
     dispatch(LOGIN(res));
   } else {
@@ -40,11 +39,15 @@ export const AUTHENTICATE = data => async dispatch => {
 
 export const LOGIN = userData => async dispatch => {
   await dispatch({type: TAG.IN, payload: userData});
+  let data = await AsyncStorage.getItem('userData');
+  const newdata = JSON.parse(data);
   var exp_time = new Date(
-    Math.abs(new Date(userData.exp * 1000) - new Date()),
+    Math.abs(new Date(newdata.exp * 1000) - new Date()),
   ).getTime();
+  //var minutes = Moment.duration(exp_time).minutes();
+ // console.warn('in login', minutes);
   //exp_time = exp_time - 60000 * 58.5;
-  //dispatch(setRefreshTimer(exp_time));
+  dispatch(setRefreshTimer(exp_time));
 };
 
 export const LOGOUT = () => async dispatch => {
@@ -70,8 +73,7 @@ const setRefreshTimer = exp_time => {
 
 export const REFRESH_TOKEN = token => async dispatch => {
   const refresh_token = {
-    refresh_token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiUkVGUkVTSCIsImlzcyI6ImRvbWluYXRlLmFpIiwidXNlciI6eyJfaWQiOiIxMmQyNTY0MC0zNWM3LTExZWEtOWIxMy1lYmZmMWUwNjNkOGEiLCJlbWFpbCI6InNhbmdyYW1wYXN0ZTk3ODhAZ21haWwuY29tIiwid29ya3NwYWNlSWQiOiJkb21haW4xMDUifSwiaWF0IjoxNTc5MDg1MDE1LCJleHAiOjE1NzkwOTIyMTV9.Dcwxl9kToMbKPZny0qRKyFBMHU0hJy9Ani7btZWUDxc',
+    refresh_token: token,
   };
   const headers = await {
     'Content-Type': 'application/json',
@@ -84,11 +86,11 @@ export const REFRESH_TOKEN = token => async dispatch => {
   if (result.status === 200) {
     const res = await result.json();
     console.warn(res);
-
+    const TokenData = await jwt_decode(JSON.stringify(res.token));
     let refreshed_userData = await {
       token: res.token,
       refresh_token: res.refresh_token,
-      tokenExpiresOn: res.tokenExpiresOn,
+      exp: TokenData.exp,
     };
     await AsyncStorage.mergeItem(
       'userData',
