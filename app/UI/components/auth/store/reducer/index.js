@@ -1,4 +1,4 @@
-import {TAG} from '../action/index';
+import {TAG} from '../action/LoginActions';
 
 const getDefaultState = () => ({
   loading: false,
@@ -16,7 +16,7 @@ const AuthData = (state, action) => {
       return {
         user: {...state.user, ...action.payload},
       };
-    case 'SIGNUP_DATA':
+    case TAG.CONTINUE:
       return {
         user: action.payload,
       };

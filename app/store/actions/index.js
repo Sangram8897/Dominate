@@ -1,5 +1,4 @@
-import * as AuthActions from '../../UI/components/auth/store/action/index';
-
+import AuthActions from "../../UI/components/auth/store/action";
 export default {
   ...AuthActions,
 };

@@ -21,6 +21,10 @@ const Fontstyle = StyleSheet.create({
     fontSize: responsiveFontSize(2.2),
     fontFamily: 'Poppins-Medium',
   },
+  FONT_MEDIUM_LARGE: {
+    fontSize: responsiveFontSize(2.4),
+    fontFamily: 'Poppins-Medium',
+  },
   FONT_LARGE: {
     fontSize: responsiveFontSize(2.6),
     fontFamily: 'Poppins-Medium',
@@ -36,6 +40,30 @@ const Fontstyle = StyleSheet.create({
   FONT_DXLARGE: {
     fontSize: responsiveFontSize(3.8),
     fontFamily: 'Poppins-Medium',
+  },
+  FONT_SMALL_SIMPLE: {
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'Poppins-Light',
+  },
+  FONT_MEDIUM_SIMPLE: {
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'Poppins-Light',
+  },
+  FONT_LARGE_SIMPLE: {
+    fontSize: responsiveFontSize(2.2),
+    fontFamily: 'Poppins-Light',
+  },
+  FONT_SMALL_ITALIC: {
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: 'Poppins-Italic',
+  },
+  FONT_MEDIUM_ITALIC: {
+    fontSize: responsiveFontSize(2),
+    fontFamily: 'Poppins-Italic',
+  },
+  FONT_LARGE_ITALIC: {
+    fontSize: responsiveFontSize(2.2),
+    fontFamily: 'Poppins-Italic',
   },
 });
 export default Fontstyle;

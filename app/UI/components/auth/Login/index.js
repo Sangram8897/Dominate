@@ -2,7 +2,13 @@
 import React, {useState, useCallback, useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import useDimensions from 'hooks/useDimensions';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from 'react-native';
 import Input from '../../../reusables/Input';
 import {ErrorMessage} from 'reusables/ErrorMessage';
 
@@ -12,60 +18,102 @@ import Color from '../../../styles/Color';
 import Button from '../../../reusables/Button';
 import Fontstyle from '../../../styles/Fontstyle';
 import {useNetInfo} from '@react-native-community/netinfo';
-import {setLogin} from './functions/login_main';
-import {loginFields_Validation} from './functions/validator';
+import {
+  loginFields_Validation,
+  isworkspace_exist,
+} from '../functions/validator';
 import Actions from 'actions';
+import {errorHandler} from '../../../../functions/message';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const Login = props => {
   const {width, height} = useDimensions().window;
   const [_logindata, set_logindata] = useState({
-    _workspace: 'domain105',
-    _email: 'sangrampaste9788@gmail.com',
-    _password: '123456',
+    _workspace: '',
+    _email: '',
+    _password: '',
   });
 
-  const [_workspace_error, set_workspace_error] = useState(true);
-  const [_email_error, set_email_error] = useState(true);
-
+  const [_workspace_error, set_workspace_error] = useState(false);
+  const _workspaceref = useRef(null);
   const _emailref = useRef(null);
   const _passwordref = useRef(null);
   const dispatch = useDispatch();
 
   const netInfo = useNetInfo();
 
+  const user = useSelector(state => state.AuthData.user);
+
+  useEffect(() => {
+    if (user) {
+      set_logindata({
+        _workspace: user.workspaceId,
+        _email: user.email,
+        _password: '',
+      });
+      _passwordref.current.focus();
+    }
+  }, [user]);
+
   login = async () => {
     props.setloading(true);
-    const valid_data = await loginFields_Validation(
-      _logindata,
-      netInfo.isConnected,
-    );
-    dispatch(Actions.AUTHENTICATE(valid_data));
-    console.warn();
-    props.setloading(false);
+    try {
+      // const valid_data = await loginFields_Validation(
+      //   _logindata,
+      //   netInfo.isConnected,
+      // );
+      // await dispatch(Actions.AUTHENTICATE(valid_data));
+      // props.setloading(false);
+      props.navigation.navigate('DrawerNavigator');
+    } catch (err) {
+      errorHandler(err);
+      props.setloading(false);
+    }
   };
 
   renderError = (errorMsg, errID) => {
     return <ErrorMessage errorMessage={errorMsg} errorID={errID} />;
   };
+  checkWorkspace = async () => {
+    try {
+      props.setloading(true);
+      const isExist = await isworkspace_exist(_logindata._workspace);
+      if (isExist) {
+        set_workspace_error(false);
+        _emailref.current.focus();
+      } else {
+        set_workspace_error(true);
+        _workspaceref.current.focus();
+      }
+      props.setloading(false);
+    } catch (err) {
+      console.warn(err);
+      props.setloading(false);
+    }
+  };
 
   return (
-    <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
+    <View
+      style={{flex: 1, width: '100%', alignSelf: 'center', overflow: 'hidden'}}>
       <View
         style={{
           height: Size.OF12,
           width: '100%',
           justifyContent: 'center',
+          marginTop: Size.OF2,
         }}>
         <Text style={Fontstyle.FONT_SMALL}>Workspace</Text>
         <TextInput
+          ref={_workspaceref}
           style={[Fontstyle.FONT_SMALL, styles.input]}
           returnKeyType="next"
           autoCorrect={false}
+          placeholder={Strings.str_sign_up_place_Workspace}
           value={_logindata._workspace}
           onChangeText={text =>
             set_logindata({..._logindata, _workspace: text})
           }
-          onSubmitEditing={() => _emailref.current.focus()}
+          onSubmitEditing={() => checkWorkspace()}
         />
         <View style={styles.errorContainer}>
           {_workspace_error &&
@@ -76,7 +124,8 @@ const Login = props => {
         style={{
           height: Size.OF12,
           width: '100%',
-          justifyContent: 'space-evenly',
+          marginTop: Size.OF1,
+          justifyContent: 'center',
         }}>
         <Text style={Fontstyle.FONT_SMALL}>Email</Text>
         <TextInput
@@ -85,6 +134,7 @@ const Login = props => {
           autoCorrect={false}
           style={[Fontstyle.FONT_SMALL, styles.input]}
           returnKeyType="next"
+          placeholder={Strings.str_sign_up_place_email}
           keyboardType={'email-address'}
           autoCompleleType={'email'}
           blurOnSubmit={true}
@@ -108,6 +158,7 @@ const Login = props => {
           ref={_passwordref}
           style={[Fontstyle.FONT_SMALL, styles.input]}
           returnKeyType="done"
+          placeholder={Strings.str_sign_up_place_password}
           autoCorrect={false}
           value={_logindata._password}
           secureTextEntry={true}
@@ -116,7 +167,7 @@ const Login = props => {
       </View>
       <View
         style={{
-          height: Size.OF8,
+          height: Size.OF7,
           width: '90%',
           alignSelf: 'center',
           justifyContent: 'center',
