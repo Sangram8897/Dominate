@@ -5,7 +5,7 @@ import Auth from 'components/auth';
 import Welcome from 'components/auth/Welcome';
 import Login from 'components/auth/Login';
 import SignUp from 'components/auth/SignUp';
-import DrawerNavigator from '../UI/components/drawer/index'
+import TabNav from './navigator/tabBar/TabBarNavigator';
 const AuthNav = createStackNavigator(
   {
     Auth: {
@@ -31,7 +31,7 @@ const AuthNav = createStackNavigator(
 
 export default createAppContainer(
   createSwitchNavigator({
+    // TabNav,
     AuthNav,
-    DrawerNavigator,
   }),
 );

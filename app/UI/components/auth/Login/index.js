@@ -64,7 +64,7 @@ const Login = props => {
       // );
       // await dispatch(Actions.AUTHENTICATE(valid_data));
       // props.setloading(false);
-      props.navigation.navigate('DrawerNavigator');
+      props.navigation.navigate('TabNav');
     } catch (err) {
       errorHandler(err);
       props.setloading(false);

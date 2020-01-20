@@ -7,9 +7,6 @@ import Gradientview from '../../reusables/Gradientview';
 import Fontstyle from '../../styles/Fontstyle';
 import Color from '../../styles/Color';
 
-
-import Actions from 'actions';
-
 const Dashboard = () => {
   const [_interval, set_interval] = useState(null);
   const [_datasource, set_datasource] = useState([

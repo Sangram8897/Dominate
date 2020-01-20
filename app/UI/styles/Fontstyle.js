@@ -45,6 +45,7 @@ const Fontstyle = StyleSheet.create({
     fontSize: responsiveFontSize(1.8),
     fontFamily: 'Poppins-Light',
   },
+  
   FONT_MEDIUM_SIMPLE: {
     fontSize: responsiveFontSize(2),
     fontFamily: 'Poppins-Light',

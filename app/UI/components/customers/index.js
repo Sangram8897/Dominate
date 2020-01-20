@@ -1,12 +1,13 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import {View, Text} from 'react-native';
+import Dashboard from '../dashboard';
 
 const Customers = () => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
+  return (
+    <View>
+      <Text />
+    </View>
+  );
+};
 
 export default Customers;
