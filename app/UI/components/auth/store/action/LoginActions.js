@@ -26,6 +26,7 @@ export const AUTHENTICATE = data => async dispatch => {
   if (result.status === 200) {
     const res = await result.json();
     const TokenData = await jwt_decode(JSON.stringify(res.token));
+    console.warn(res.token)
     const userData = {
       token: res.token,
       refresh_token: res.refresh_token,

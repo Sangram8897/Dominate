@@ -29,9 +29,9 @@ import {ScrollView} from 'react-native-gesture-handler';
 const Login = props => {
   const {width, height} = useDimensions().window;
   const [_logindata, set_logindata] = useState({
-    _workspace: '',
-    _email: '',
-    _password: '',
+    _workspace: 'domain102',
+    _email: 'sangrampaste9788@gmail.com',
+    _password: '123456',
   });
 
   const [_workspace_error, set_workspace_error] = useState(false);
@@ -46,7 +46,7 @@ const Login = props => {
 
   useEffect(() => {
     if (user) {
-      set_logindata({
+      set_logindata({  
         _workspace: user.workspaceId,
         _email: user.email,
         _password: '',
@@ -58,12 +58,12 @@ const Login = props => {
   login = async () => {
     props.setloading(true);
     try {
-      // const valid_data = await loginFields_Validation(
-      //   _logindata,
-      //   netInfo.isConnected,
-      // );
-      // await dispatch(Actions.AUTHENTICATE(valid_data));
-      // props.setloading(false);
+      const valid_data = await loginFields_Validation(
+        _logindata,
+        netInfo.isConnected,
+      );
+      await dispatch(Actions.AUTHENTICATE(valid_data));
+      props.setloading(false);
       props.navigation.navigate('TabNav');
     } catch (err) {
       errorHandler(err);

@@ -1,19 +1,10 @@
-import {postData} from 'functions/api';
-import {url} from 'config/index';
+import Actions from 'actions';
+import {url} from 'config';
+import {getData, postData} from 'functions/api';
 import {SnackMessage, NONetworkAlert, errorHandler} from 'functions/message';
 import AsyncStorage from '@react-native-community/async-storage';
-import Moment from 'moment';
 
-const ACTION = 'LEADS';
-
-export const LEADS = {
-  LOADING: `${ACTION}/LOADING`,
-  SUCCESS: `${ACTION}/SUCCESS`,
-  FAIL: `${ACTION}/FAIL`,
-};
-
-export const GET_ALL_LEADS = formData => async dispatch => {
-  await dispatch({type: LEADS.LOADING});
+export const search_lead = async searchText => {
   let data1 = await AsyncStorage.getItem('userData');
   const newdata = JSON.parse(data1);
   const headers = await {
@@ -21,11 +12,16 @@ export const GET_ALL_LEADS = formData => async dispatch => {
     Authorization: 'Bearer ' + newdata.token,
   };
   const allLeadQuery = {
-    // pageNo: 10,
+    // pageNo: 1,
     // pageSize: 0,
-    query: {},
+    query: {
+    },
   };
   try {
+    // const result = await getData(
+    //   `${url}/api/leads/search/text?text=${searchText}`,
+    //   headers,
+    // );
     const result = await postData(
       `${url}/api/leads/search`,
       allLeadQuery,
@@ -33,13 +29,12 @@ export const GET_ALL_LEADS = formData => async dispatch => {
     );
     if (result.status === 200) {
       const res = await result.json();
-      await dispatch({type: LEADS.SUCCESS, payload: res});
+      console.warn('ok', res);
     } else {
-      await dispatch({type: LEADS.FAIL});
-      errorHandler(result.status);
+      console.warn('not ok');
     }
   } catch (err) {
-    console.warn('leading soon fail catch');
+    return false;
   }
 };
-//http://18.234.225.144/dinner/all_dinner
+//{{url}}/api/leads/search/text?text=hot&isHidden=false&assigned=83987620-8212-11e9-9932-5b1fa6f8b7ce&status=ACTIVE

@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import Dashboard from '../dashboard';
+import Containerview from '../../reusables/Containerview';
 
 const Customers = () => {
   return (
-    <View>
-      <Text />
-    </View>
+    <Containerview>
+      <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
+        <Text>Customers</Text>
+      </View>
+    </Containerview>
   );
 };
 

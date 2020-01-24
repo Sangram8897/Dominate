@@ -31,7 +31,7 @@ const AuthNav = createStackNavigator(
 
 export default createAppContainer(
   createSwitchNavigator({
-    // TabNav,
     AuthNav,
+    TabNav,
   }),
 );

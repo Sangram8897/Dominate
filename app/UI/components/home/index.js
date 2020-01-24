@@ -13,37 +13,36 @@ import Actions from 'actions';
 const _items = [
   {
     _name: 'Team',
-    src: require('icons/dashboard/team.png'),
-    des: 'Regarding Mobile Application',
+    src: require('icons/dashboard/abc.png'),
+    nav: 'Team',
   },
   {
     _name: 'Customers',
     src: require('icons/dashboard/customer.png'),
-    des: 'Regarding web project,Application deadline date',
+    nav: 'Customers',
   },
   {
     _name: 'Reports',
     src: require('icons/dashboard/report.png'),
-    des: 'Regarding new web project',
+    nav: 'Reports',
   },
   {
     _name: 'Proposals',
     src: require('icons/dashboard/praposals.png'),
-    des: 'Regarding delay in deadlines',
+    nav: 'Praposals',
   },
   {
     _name: 'Quotations',
-    src: require('icons/dashboard/profile.png'),
-    des: 'Regarding web project deadline date',
+    src: require('icons/dashboard/qutations.png'),
+    nav: 'Quatations',
   },
   {
     _name: 'Tasks',
     src: require('icons/dashboard/task.png'),
-    des: 'Regarding web project deadline date',
+    nav: 'Task',
   },
 ];
-const Home = () => {
-
+const Home = props => {
   const netInfo = useNetInfo();
   const dispatch = useDispatch();
 
@@ -51,8 +50,8 @@ const Home = () => {
   let dateinformat = Moment(date).format('dddd,DD-MMM ');
 
   useEffect(() => {
-   dispatch(Actions.GET_ALL_LEADS_COUNT())
-  }, []);
+    dispatch(Actions.GET_ALL_LEADS_COUNT());
+  }, [dispatch]);
 
   return (
     <Containerview>
@@ -101,6 +100,7 @@ const Home = () => {
             {_items.map((item, index) => (
               <TouchableOpacity
                 key={item._name}
+                onPress={()=>props.navigation.navigate(item.nav)}
                 style={{
                   height: Size.OF9 * 2,
                   width: '45%',
@@ -112,7 +112,7 @@ const Home = () => {
                   elevation: 5,
                 }}>
                 <Image
-                  resizeMode="contain"
+                  resizeMode="stretch"
                   source={item.src}
                   style={{
                     width: 50,

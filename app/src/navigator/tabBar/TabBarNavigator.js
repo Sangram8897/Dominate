@@ -6,8 +6,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Dashboard from '../../../UI/components/dashboard';
 import Color from '../../../UI/styles/Color';
-import Customers from '../../../UI/components/customers';
-import Team from '../../../UI/components/team';
+
 import Leads from '../../../UI/components/leads';
 import Praposals from '../../../UI/components/praposals';
 import Reports from '../../../UI/components/reports';
@@ -16,12 +15,15 @@ import Profile from '../../../UI/components/profile';
 import Quatations from '../../../UI/components/qutations';
 import Home from '../../../UI/components/home';
 import Chat from '../../../UI/components/chat';
+import HomeNav from './HomeNav';
+import LeadsNav from './LeadsNav';
 export const iconSize = 25;
 const dimen = Dimensions.get('window');
+
 const routeConfiguration = {
   TabOne: {
     path: '/',
-    screen: Home,
+    screen: HomeNav,
 
     navigationOptions: {
       title: 'Home',
@@ -32,23 +34,23 @@ const routeConfiguration = {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-        }}>
-        <Image
-          resizeMode="contain"
-          source={require('icons/dashboard/home.png')}
-          style={{
-            width: iconSize,
-            height: iconSize,
-            tintColor: focused ? Color.primary : 'grey',
-          }}
-        />
-      </View>
+          }}>
+          <Image
+            resizeMode="contain"
+            source={require('icons/dashboard/home.png')}
+            style={{
+              width: iconSize,
+              height: iconSize,
+              tintColor: focused ? Color.primary : 'grey',
+            }}
+          />
+        </View>
       ),
     },
   },
   TabTwo: {
     path: '/',
-    screen: Leads,
+    screen: LeadsNav,
 
     navigationOptions: {
       title: 'Leads',
@@ -59,17 +61,17 @@ const routeConfiguration = {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-        }}>
-        <Image
-          resizeMode="contain"
-          source={require('icons/dashboard/filter.png')}
-          style={{
-            width: iconSize,
-            height: iconSize,
-            tintColor: focused ? Color.primary : 'grey',
-          }}
-        />
-      </View>
+          }}>
+          <Image
+            resizeMode="contain"
+            source={require('icons/dashboard/filter.png')}
+            style={{
+              width: iconSize,
+              height: iconSize,
+              tintColor: focused ? Color.primary : 'grey',
+            }}
+          />
+        </View>
       ),
     },
   },
@@ -86,17 +88,17 @@ const routeConfiguration = {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-        }}>
-        <Image
-          resizeMode="contain"
-          source={require('icons/dashboard/chat.png')}
-          style={{
-            width: iconSize,
-            height: iconSize,
-            tintColor: focused ? Color.primary : 'grey',
-          }}
-        />
-      </View>
+          }}>
+          <Image
+            resizeMode="contain"
+            source={require('icons/dashboard/chat.png')}
+            style={{
+              width: iconSize,
+              height: iconSize,
+              tintColor: focused ? Color.primary : 'grey',
+            }}
+          />
+        </View>
       ),
     },
   },
@@ -113,17 +115,17 @@ const routeConfiguration = {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-        }}>
-        <Image
-          resizeMode="contain"
-          source={require('icons/dashboard/profile.png')}
-          style={{
-            width: iconSize,
-            height: iconSize,
-            tintColor: focused ? Color.primary : 'grey',
-          }}
-        />
-      </View>
+          }}>
+          <Image
+            resizeMode="contain"
+            source={require('icons/dashboard/profile.png')}
+            style={{
+              width: iconSize,
+              height: iconSize,
+              tintColor: focused ? Color.primary : 'grey',
+            }}
+          />
+        </View>
       ),
     },
   },
