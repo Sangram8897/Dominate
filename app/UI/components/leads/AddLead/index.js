@@ -24,11 +24,26 @@ import {search_lead} from '../functions/searctlead';
 import Button from '../../../reusables/Button';
 import IsEmpty from '../../../../utils/IsEmpty';
 import Expandable from './Expandable';
-
+import {persolInfo_validator } from './validatorfunctions';
+import validate from 'utils/validation';
+import {ErrorMessage} from 'reusables/ErrorMessage';
 
 let nextId = 1;
 const AddLead = props => {
   const [_addlead, set_addlead] = useState({
+    _firstname: '',
+    _lastname: '',
+    _email: '',
+    _phone: '',
+    _company: '',
+    _worth: '',
+    _address: '',
+    _city: '',
+    _state: '',
+    _pincode: '',
+    _website: '',
+  });
+  const [_addlead_errors, set_addlead_errors] = useState({
     _firstname: '',
     _lastname: '',
     _email: '',
@@ -207,6 +222,131 @@ const AddLead = props => {
     }
 
   });
+  nextHandler=()=>{
+    if (_switch._personal) {
+      persolInfo_validator(_addlead).then(()=>{
+        set_switch({
+          _personal: false,
+          _addsource: true,
+          _addtag: false,
+          _otheraccounts: false,
+          _address: false,
+          _about: false,
+        });
+        return true;
+      }).catch((err)=>set_addlead_errors(err))
+     
+    }
+    if (_switch._addsource) {
+      set_switch({
+        _personal: false,
+        _addsource: false,
+        _addtag: true,
+        _otheraccounts: false,
+        _address: false,
+        _about: false,
+      });
+      return true;
+    }
+    if (_switch._addtag) {
+      set_switch({
+        _personal: false,
+        _addsource: false,
+        _addtag: false,
+        _otheraccounts: true,
+        _address: false,
+        _about: false,
+      });
+      return true;
+    }
+    if (_switch._otheraccounts) {
+      set_switch({
+        _personal: false,
+        _addsource: false,
+        _addtag: false,
+        _otheraccounts: false,
+        _address: true,
+        _about: false,
+      });
+      return true;
+    }
+    if (_switch._address) {
+      set_switch({
+        _personal: false,
+        _addsource: false,
+        _addtag: false,
+        _otheraccounts: false,
+        _address: false,
+        _about: true,
+      });
+      return true;
+    }
+    if (_switch._about) {
+      console.warn('cp')
+      return true;
+    }
+  }
+  backHandler=()=>{
+    if (_switch._personal) {
+      props.navigation.goBack();
+      return true;
+    }
+    if (_switch._addsource) {
+      set_switch({
+        _personal: true,
+        _addsource: false,
+        _addtag: false,
+        _otheraccounts: false,
+        _address: false,
+        _about: false,
+      });
+      return true;
+    }
+    if (_switch._addtag) {
+      set_switch({
+        _personal: false,
+        _addsource: true,
+        _addtag: false,
+        _otheraccounts: false,
+        _address: false,
+        _about: false,
+      });
+      return true;
+    }
+    if (_switch._otheraccounts) {
+      set_switch({
+        _personal: false,
+        _addsource: false,
+        _addtag: true,
+        _otheraccounts: false,
+        _address: false,
+        _about: false,
+      });
+      return true;
+    }
+    if (_switch._address) {
+      set_switch({
+        _personal: false,
+        _addsource: false,
+        _addtag: false,
+        _otheraccounts: true,
+        _address: false,
+        _about: false,
+      });
+      return true;
+    }
+    if (_switch._about) {
+      set_switch({
+        _personal: false,
+        _addsource: false,
+        _addtag: false,
+        _otheraccounts: false,
+        _address: true,
+        _about: false,
+      });
+      return true;
+    }
+  }
   deleteNinja = id => {
     let ninjas = _selectedtags.filter(ninja => {
       return ninja._id !== id;
@@ -276,7 +416,6 @@ getValue = (item)=>{
         </Text>
         {_switch._personal && (
         <View style={{flex: 1, width: '90%'}}>
-            <View style={{flex: 1, width: '100%'}} >
               <ScrollView>
               <View
               style={{
@@ -285,7 +424,7 @@ getValue = (item)=>{
                 alignItems: 'center',
                 width: '100%',
                 alignSelf: 'center',
-                height: Size.OF10,
+                height: Size.OF14,
               }}>
               <View style={styles.inputContainer}>
                 <Text style={Fontstyle.FONT_SMALL}>First Name</Text>
@@ -301,10 +440,28 @@ getValue = (item)=>{
                   ref={input => {
                     inputs._firstname = input;
                   }}
+                  onBlur={()=>{
+                    let firstname_error = validate.stringValidation(_addlead._firstname);
+                    if (firstname_error.isEmpty) {
+                      set_addlead_errors({..._addlead_errors,_firstname:'enter firstname'});
+                    } 
+                    else {
+                      if (!firstname_error.valid) {
+                        set_addlead_errors({..._addlead_errors,_firstname:'enter valid firstname'});
+                      }
+                      else{
+                        set_addlead_errors({..._addlead_errors,_firstname:null});
+                      }
+                    }
+                  }}
                   onSubmitEditing={() => {
                     focusNextField('_lastname');
                   }}
                 />
+                 <View style={styles.errorContainer}>
+          {_addlead_errors._firstname &&
+            renderError(_addlead_errors._firstname, 'firstname_error')}
+        </View>
               </View>
               <View style={[styles.inputContainer, {marginLeft: Size.OF2}]}>
                 <Text style={Fontstyle.FONT_SMALL}>Last Name</Text>
@@ -320,10 +477,28 @@ getValue = (item)=>{
                   ref={input => {
                     inputs._lastname = input;
                   }}
+                  onBlur={()=>{
+                    let lastname_error = validate.stringValidation(_addlead._lastname);
+                    if (lastname_error.isEmpty) {
+                      set_addlead_errors({..._addlead_errors,_lastname:'enter lastname'});
+                    } 
+                    else {
+                      if (!lastname_error.valid) {
+                        set_addlead_errors({..._addlead_errors,_lastname:'enter valid lastname'});
+                      }
+                      else{
+                        set_addlead_errors({..._addlead_errors,_lastname:null});
+                      }
+                    }
+                  }}
                   onSubmitEditing={() => {
                     focusNextField('_email');
                   }}
                 />
+                  <View style={styles.errorContainer}>
+          {_addlead_errors._lastname &&
+            renderError(_addlead_errors._lastname, 'firstname_error')}
+        </View>
               </View>
             </View>
             <View style={styles.inputContainer}>
@@ -331,6 +506,7 @@ getValue = (item)=>{
               <TextInput
                 style={[Fontstyle.FONT_SMALL, styles.input]}
                 returnKeyType="next"
+                keyboardType={'email-address'}
                 placeholder={Strings.str_sign_up_place_password}
                 autoCorrect={false}
                 value={_addlead._email}
@@ -338,16 +514,35 @@ getValue = (item)=>{
                 ref={input => {
                   inputs._email = input;
                 }}
+                onBlur={()=>{
+                  let email_error = validate.emailValidation(_addlead._email);
+                  if (email_error.isEmpty) {
+                    set_addlead_errors({..._addlead_errors,_email:'enter email'});
+                  } 
+                  else {
+                    if (!email_error.valid) {
+                      set_addlead_errors({..._addlead_errors,_email:'enter valid email'});
+                    }
+                    else{
+                      set_addlead_errors({..._addlead_errors,_email:null});
+                    }
+                  }
+                }}
                 onSubmitEditing={() => {
                   focusNextField('_phone');
                 }}
               />
+                    <View style={styles.errorContainer}>
+          {_addlead_errors._email &&
+            renderError(_addlead_errors._email, 'lastname_error')}
+        </View>
             </View>
             <View style={styles.inputContainer}>
               <Text style={Fontstyle.FONT_SMALL}>Phone Number</Text>
               <TextInput
                 style={[Fontstyle.FONT_SMALL, styles.input]}
                 returnKeyType="next"
+                keyboardType={'number-pad'}
                 placeholder={Strings.str_sign_up_place_password}
                 autoCorrect={false}
                 value={_addlead._phone}
@@ -355,10 +550,28 @@ getValue = (item)=>{
                 ref={input => {
                   inputs._phone = input;
                 }}
+                onBlur={()=>{
+                  let phone_error = validate.phonenumberValidation(_addlead._phone);
+                  if (phone_error.isEmpty) {
+                    set_addlead_errors({..._addlead_errors,_phone:'please enter phone number'});
+                  } 
+                  else {
+                    if (!phone_error.valid) {
+                      set_addlead_errors({..._addlead_errors,_phone:'please enter valid phone number'});
+                    }
+                    else{
+                      set_addlead_errors({..._addlead_errors,_phone:null});
+                    }
+                  }
+                }}
                 onSubmitEditing={() => {
                   focusNextField('_company');
                 }}
               />
+              <View style={styles.errorContainer}>
+          {_addlead_errors._phone &&
+            renderError(_addlead_errors._phone, 'phone_error')}
+        </View>
             </View>
             <View style={styles.inputContainer}>
               <Text style={Fontstyle.FONT_SMALL}>Company</Text>
@@ -374,10 +587,22 @@ getValue = (item)=>{
                 ref={input => {
                   inputs._company = input;
                 }}
+                onBlur={()=>{
+                  if (IsEmpty(_addlead._company)) {
+                    set_addlead_errors({..._addlead_errors,_company:'please enter your Company name'});
+                  } 
+                  else {
+                      set_addlead_errors({..._addlead_errors,_company:null});
+                  }
+                }}
                 onSubmitEditing={() => {
                   focusNextField('_worth');
                 }}
               />
+              <View style={styles.errorContainer}>
+          {_addlead_errors._company &&
+            renderError(_addlead_errors._company, 'company_error')}
+        </View>
             </View>
               <View style={styles.inputContainer}>
               <View style={{flexDirection: 'row'}}>
@@ -394,6 +619,7 @@ getValue = (item)=>{
               <TextInput
                 style={[Fontstyle.FONT_SMALL, styles.input]}
                 returnKeyType="done"
+                keyboardType={'number-pad'}
                 placeholder={Strings.str_sign_up_place_password}
                 autoCorrect={false}
                 value={_addlead._worth}
@@ -401,32 +627,32 @@ getValue = (item)=>{
                 ref={input => {
                   inputs._worth = input;
                 }}
+                onBlur={()=>{
+                  let worth_error = validate.numberValidation(_addlead._worth);
+                  if (worth_error.isEmpty) {
+                    set_addlead_errors({..._addlead_errors,_worth:'please enter worth Amount'});
+                  } 
+                  else {
+                    if (!worth_error.valid) {
+                      set_addlead_errors({..._addlead_errors,_worth:'please enter valid worth Amount'});
+                    }
+                    else{
+                      set_addlead_errors({..._addlead_errors,_worth:null});
+                    }
+                  }
+                }}
                 onSubmitEditing={() => {}}
               />
+               <View style={styles.errorContainer}>
+          {_addlead_errors._worth &&
+            renderError(_addlead_errors._worth, 'worth_error')}
+        </View>
             </View>
               </ScrollView>
               </View>
-            <View
-              style={{
-                height: Size.OF12,
-                width: '50%',
-                alignSelf: 'flex-end',
-                justifyContent: 'center',
-                marginHorizontal: Size.OF2,
-              }}>
-              <Button
-                onPressedFunction={() =>_personalNext()}
-                backColor={Color.red}
-                borderColor={Color.red}
-                label={'Next'}
-                textColor={Color.white}
-              />
-            </View>
-          </View>
         )}
         {_switch._addsource &&
         <View style={{flex: 1, width: '90%'}}>
-            <View style={{flex: 1, width: '100%'}} >
               <ScrollView>
               <Text style={Fontstyle.FONT_SMALL}>Select Source</Text>
             <View
@@ -460,30 +686,12 @@ getValue = (item)=>{
             </View>
               </ScrollView>
               </View>
-            <View
-              style={{
-                height: Size.OF12,
-                width: '50%',
-                alignSelf: 'flex-end',
-                justifyContent: 'center',
-                marginHorizontal: Size.OF2,
-              }}>
-              <Button
-                onPressedFunction={() =>_addsourceNext()}
-                backColor={Color.red}
-                borderColor={Color.red}
-                label={'Next'}
-                textColor={Color.white}
-              />
-            </View>
-          </View>
         }
         {_switch._addtag &&
         <View style={{flex: 1, width: '90%'}}>
             <Text style={[Fontstyle.FONT_SMALL]}>
               Selected Tag
             </Text>
-              <View style={{flex: 1, width: '100%'}} >
                 <ScrollView>
                 {_selectedtags.length == 0 ? (
               <Text
@@ -592,51 +800,15 @@ getValue = (item)=>{
             </View>
                 </ScrollView>
                 </View>
-              <View
-                style={{
-                  height: Size.OF12,
-                  width: '50%',
-                  alignSelf: 'flex-end',
-                  justifyContent: 'center',
-                  marginHorizontal: Size.OF2,
-                }}>
-                <Button
-                  onPressedFunction={() =>_addtagNext()}
-                  backColor={Color.red}
-                  borderColor={Color.red}
-                  label={'Next'}
-                  textColor={Color.white}
-                />
-              </View>
-            </View>
         }
         {_switch._otheraccounts &&
         <View style={{flex: 1, width: '90%'}}>
-             <View style={{flex: 1, width: '100%'}} >
              <Expandable getValue={getValue}/>
 
             </View>
-             <View
-               style={{
-                 height: Size.OF12,
-                 width: '50%',
-                 alignSelf: 'flex-end',
-                 justifyContent: 'center',
-                 marginHorizontal: Size.OF2,
-               }}>
-               <Button
-                 onPressedFunction={() =>_otheraccountsNext()}
-                 backColor={Color.red}
-                 borderColor={Color.red}
-                 label={'Next'}
-                 textColor={Color.white}
-               />
-             </View>
-           </View>
         }
         {_switch._address &&
         <View style={{flex: 1, width: '90%'}}>
-             <View style={{flex: 1, width: '100%'}} >
                <ScrollView>
                <View style={styles.inputContainer}>
               <Text style={Fontstyle.FONT_SMALL}>Address</Text>
@@ -747,27 +919,9 @@ getValue = (item)=>{
             </View>
                </ScrollView>
                </View>
-             <View
-               style={{
-                 height: Size.OF12,
-                 width: '50%',
-                 alignSelf: 'flex-end',
-                 justifyContent: 'center',
-                 marginHorizontal: Size.OF2,
-               }}>
-               <Button
-                 onPressedFunction={() =>_addressNext()}
-                 backColor={Color.red}
-                 borderColor={Color.red}
-                 label={'Next'}
-                 textColor={Color.white}
-               />
-             </View>
-           </View>
         }
         {_switch._about &&
         <View style={{flex: 1, width: '90%'}}>
-         <View style={{flex: 1, width: '100%'}} >
            <ScrollView>
            <View style={[styles.inputContainer, {marginBottom: Size.OF2}]}>
                 <Text style={Fontstyle.FONT_SMALL}>Assign Representative</Text>
@@ -842,24 +996,45 @@ getValue = (item)=>{
               </View>
            </ScrollView>
            </View>
-         <View
-           style={{
-             height: Size.OF12,
-             width: '50%',
-             alignSelf: 'flex-end',
-             justifyContent: 'center',
-             marginHorizontal: Size.OF2,
-           }}>
-           <Button
-             onPressedFunction={() =>_aboutNext()}
-             backColor={Color.red}
-             borderColor={Color.red}
-             label={'Submit'}
-             textColor={Color.white}
-           />
-         </View>
-       </View>
         }
+                <View style={{flexDirection:'row',width:'100%',alignItems:'center',justifyContent:'space-between'}}>
+  {!_switch._personal ?  (   <TouchableOpacity
+              onPress={()=>backHandler()}
+              style={{
+                height: Size.OF7,
+                width: Size.OF7,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: Color.red,
+                borderRadius: 30,
+                marginLeft:Size.OF2,
+              }}>
+              <Image
+                source={require('icons/symbols/backarrow.png')}
+                style={{
+                  height: Size.OF3,
+                  width: Size.OF3,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>): <View/>}
+            <View
+               style={{
+                 height: Size.OF12,
+                 width: '50%',
+                 justifyContent: 'center',
+                 marginHorizontal: Size.OF2,
+               }}>
+                 
+               <Button
+                 onPressedFunction={() =>nextHandler()}
+                 backColor={Color.red}
+                 borderColor={Color.red}
+                 label={_switch._about?'Submit':'Next'}
+                 textColor={Color.white}
+               />
+             </View>
+        </View>
       </View>
     </Containerview>
   );
@@ -876,7 +1051,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   inputContainer: {
-    height: Size.OF15,
+    height: Size.OF14,
     flex: 1,
     width: '90%',
     justifyContent: 'center',
@@ -887,6 +1062,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderColor: Color.light_gray,
+  },
+  errorContainer: {
+    marginTop: 6,
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start',
   },
 });
 export default AddLead;

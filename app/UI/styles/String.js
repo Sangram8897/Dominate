@@ -47,5 +47,10 @@ const Strings = {
   str_workspace_already_exist: 'Workspace already Exist',
   str_workspace_not_exist: 'Workspace Does not Exist',
   str_valid_email: 'Please Enter valid Email Address',
+
+  //validator
+  email_validator_string: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+  number_validator_string: /^[0]?[789]\d{9}$/,
+  alphabet_validator_string: /^[a-zA-Z]*$/,
 };
 export default Strings;

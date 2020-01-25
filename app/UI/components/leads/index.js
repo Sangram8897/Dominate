@@ -18,6 +18,8 @@ import Fontstyle from '../../styles/Fontstyle';
 import Color from '../../styles/Color';
 import Actions from 'actions';
 import {search_lead} from './functions/searctlead';
+import {url} from 'config';
+
 const _items = [
   {
     _name: 'Team',
@@ -147,7 +149,19 @@ const Leads = props => {
                   overflow: 'hidden',
                 }}>
                 <View style={{flex: 1.3, width: '100%', flexDirection: 'row'}}>
-                  <View style={{flex: 1.2, width: '100%'}} />
+                  <View style={{flex: 1.2, width: '100%',justifyContent:'center',alignItems:'center'}}>
+                    
+                      <Image
+                        source={require('icons/leads/user.png')}
+                        style={{
+                          height:Size.OF10,
+                          width: Size.OF10,
+                          resizeMode: 'cover',
+                          borderRadius: 20,
+                        }}
+                      />
+                    
+                  </View>
                   <View
                     style={{
                       flex: 3,
