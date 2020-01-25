@@ -171,6 +171,7 @@ const AddLead = props => {
      
     }
     if (_switch._addsource) {
+      
       set_switch({
         _personal: false,
         _addsource: false,
@@ -600,6 +601,7 @@ renderError = (errorMsg, errID) => {
               }}>
               {_source.map((item, index) => (
                 <TouchableOpacity
+                  key={item._id}
                   onPress={() => selectsource(item._id)}
                   style={{
                     width: '100%',
