@@ -839,7 +839,7 @@ getValue = (item)=>{
            </View>
         }
                <View style={{flexDirection:'row',width:'100%',alignItems:'center',justifyContent:'space-between'}}>
-  {!_switch._personal ?     <TouchableOpacity
+       <TouchableOpacity
               onPress={()=>backHandler()}
               style={{
                 height: Size.OF7,
@@ -858,7 +858,7 @@ getValue = (item)=>{
                   resizeMode: 'contain',
                 }}
               />
-            </TouchableOpacity>:<View/>}
+            </TouchableOpacity>
             <View
                style={{
                  height: Size.OF12,
