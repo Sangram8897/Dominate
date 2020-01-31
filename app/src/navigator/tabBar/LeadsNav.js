@@ -5,11 +5,15 @@ import Leads from '../../../UI/components/leads';
 import ViewLead from '../../../UI/components/leads/viewLead';
 import AddLead from '../../../UI/components/leads/AddLead';
 import AddLead2 from '../../../UI/components/leads/AddLead/AddLead2';
+import LeadAnimator from '../../../UI/components/leads/AddLead/LeadAnimator';
 
 const LeadsNav = createStackNavigator(
   {
     Leads: {
       screen: Leads,
+    },
+    LeadAnimator: {
+      screen: LeadAnimator,
     },
     AddLead: {
       screen: AddLead,
@@ -24,7 +28,7 @@ const LeadsNav = createStackNavigator(
   {
     headerMode: 'none',
     navigationOptions: {
-      gesturesEnabled: true,
+      gesturesEnabled: false,
     },
   },
 );

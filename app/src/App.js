@@ -4,6 +4,8 @@ import Auth from 'components/auth';
 import store from 'store/configureStore';
 import {Provider} from 'react-redux';
 import AppNavigator from './MainNavigator';
+import {enableScreens} from 'react-native-screens';
+enableScreens();
 const App = () => {
   return (
     <Provider store={store}>

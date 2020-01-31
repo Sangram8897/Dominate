@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, {Component} from 'react';
 //import react in our project
 import {
@@ -14,6 +15,8 @@ import {
 import Size from '../../../styles/Size';
 import Fontstyle from '../../../styles/Fontstyle';
 import Color from '../../../styles/Color';
+import {CheckBox} from 'native-base';
+import IsEmpty from '../../../../utils/IsEmpty';
 //import basic react native components
 
 class ExpandableItemComponent extends Component {
@@ -22,11 +25,43 @@ class ExpandableItemComponent extends Component {
     super();
     this.state = {
       layoutHeight: 0,
-      textInputs: [],
+      textInputs: [
+        {
+          key: 0,
+          account: '',
+          value: '',
+        },
+        {key: 1, account: '', value: ''},
+        {key: 2, account: '', value: ''},
+        {key: 3, account: '', value: ''},
+      ],
       textInputvalue: {},
     };
   }
+  componentDidMount() {
+    this.setState({
+      textInputs: this.props._other_accounts,
+    });
+  }
+  componentDidUpdate(nextProps, prevState)
+  {
+    if (nextProps._other_accounts !== prevState.textInputs) {
+      console.warn('jdyrt',nextProps._other_accounts);
+      return {
+        textInputs: nextProps._other_accounts,
+        
+      };
+    }
+  }
   static getDerivedStateFromProps(nextProps, prevState) {
+    // if (
+    //   !IsEmpty(nextProps._other_accounts) &&
+    //   nextProps._other_accounts !== prevState.textInputs
+    // ) {
+    //   return {
+    //     textInputs: nextProps._other_accounts,
+    //   };
+    // }
     if (nextProps.item.isExpanded) {
       return {layoutHeight: null, textInputs: prevState.textInputs};
     } else {
@@ -46,18 +81,6 @@ class ExpandableItemComponent extends Component {
     return false;
   }
 
-  // componentDidMount()
-  // {
-  //   console.warn(this.props.ac)
-  // }
-  // componentDidUpdate(preprops,prestate)
-  // {
-  //   console.warn(prestate);
-  // }
-  // getSnapshotBeforeUpdate()
-  // {
-  //   console.warn(this.props.ac)
-  // }
   render() {
     return (
       <View>
@@ -66,7 +89,14 @@ class ExpandableItemComponent extends Component {
           activeOpacity={0.8}
           onPress={this.props.onClickFunction}
           style={styles.header}>
-          <Text style={Fontstyle.FONT_SMALL}>{this.props.item.name}</Text>
+          <CheckBox
+            checked={this.props.item.isExpanded}
+            color={Color.primary}
+            onPress={this.props.onClickFunction}
+          />
+          <Text style={[Fontstyle.FONT_SMALL, {marginLeft: Size.OF3}]}>
+            {this.props.item.name}
+          </Text>
         </TouchableOpacity>
         <View
           style={{
@@ -74,26 +104,36 @@ class ExpandableItemComponent extends Component {
             overflow: 'hidden',
           }}>
           <View
-            style={{height: Size.OF8,justifyContent:'center', width: '100%'}}>
+            style={{
+              height: Size.OF10,
+              justifyContent: 'center',
+              width: '100%',
+            }}>
             <TextInput
-              style={[Fontstyle.FONT_SMALL,{
-                backgroundColor:Color.white,
-                color: Color.gray,
-                flex:1,
-                borderBottomWidth:1,
-                borderColor:Color.gray,
-              }]}
+              style={[
+                Fontstyle.FONT_SMALL,
+                {
+                  backgroundColor: Color.white,
+                  color: Color.gray,
+                  flex: 1,
+                  borderBottomWidth: 1,
+                  borderColor: Color.gray,
+                  marginBottom: Size.OF2,
+                },
+              ]}
               placeholder={'Enter Link here'}
-              onChangeText={text => {
-                const data={
-                  key: this.props.index,
-                  account: this.props.item.name,
-                  value: text,
-                }
-                this.setState({
-                  textInputvalue: data,
-                });
-              }}
+              // onChangeText={text => {
+                
+              //   const data = {
+              //     key: this.props.index,
+              //     account: this.props.item.name,
+              //     value: text,
+              //   };
+              //   this.setState({
+              //     textInputs: {...this.state.textInputs, data},
+              //   });
+              // }}
+              value={this.props._other_accounts[this.props.index]}
               onEndEditing={() => {
                 this.props.getValue(this.state.textInputvalue);
               }}
@@ -142,6 +182,7 @@ export default class Expandable extends Component {
               onClickFunction={this.updateLayout.bind(this, key)}
               item={item}
               getValue={this.props.getValue}
+              _other_accounts={this.props._other_accounts}
             />
           ))}
         </ScrollView>
@@ -157,8 +198,9 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    height: Size.OF6,
-    justifyContent: 'flex-end',
+    height: Size.OF7,
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   separator: {
     height: 0.5,

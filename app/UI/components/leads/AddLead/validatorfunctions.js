@@ -55,3 +55,75 @@ export const persolInfo_validator = async data => {
     throw errors;
   }
 };
+
+export const addlead_validator = async (
+  _addlead,
+  _source,
+  _selectedtags,
+  _other_accounts,
+  _assigne,
+) => {
+  // console.warn(_addlead, _source, _selectedtags, _other_accounts, _assigne);
+  let tags = [];
+  if (_selectedtags.length > 0) {
+    tags = await _selectedtags.map(({_name}) => {
+      return _name;
+    });
+  }
+  let source = null;
+  let source_ = await _source.filter(item => item.value === true);
+  if (source_.length > 0) {
+    source = source_[0]._name;
+  }
+
+  const data = {
+    name: _addlead._firstname + ' ' + _addlead._lastname,
+    company: _addlead._company,
+    email: _addlead._email,
+    phone: '+91' + _addlead._phone,
+    shippingAddress: {
+      state: _addlead._state,
+      city: _addlead._city,
+      pincode: _addlead._pincode,
+      website: _addlead._website,
+      countryCode: '+91',
+    },
+    billingAddress: _addlead._address,
+    status: 'NEW_LEAD',
+    tags: tags,
+    assigned: _assigne._id,
+    additionalInfo: "{'sdsd':'sdsd'}",
+    profileImage: 'https://xyz.com',
+    about: _addlead._about,
+    degree: 'COLD',
+    media: _other_accounts,
+    worth: _addlead._worth,
+    source: source,
+    isKanban: false,
+    isHidden: false,
+  };
+
+  return data;
+  // "name":"sangram gkxfghjxjy",
+  // "company":"",
+  // "email":"sangram8897@gmail.com",
+  // "phone":"+919021010551",
+  // "shippingAddress":{
+  //   "state":"Maharashtra",
+  //   "city":"pune",
+  //   "pincode":"411024",
+  //   "website":"pune",
+  //   "countryCode":"+91"},
+  // "billingAddress":"karve nagarg, lane no 4,pune",
+  // "status":"NEW_LEAD",
+  // "tags":[],
+  // "assigned":"57324830-40db-11ea-93cb-a53ed7aa2a18",
+  // "additionalInfo":"{'sdsd':'sdsd'}",
+  // "profileImage":"https://xyz.com",
+  // "about":"adasd","degree":"COLD",
+  // "media":{"facebook":"","linkedIn":"","instagram":"","other":""},
+  // "worth":"30000",
+  // "source":null,
+  // "isKanban":false,
+  // "isHidden":false
+};

@@ -20,6 +20,20 @@ const LeadsData = (state, action) => {
         leads: action.payload,
         loading: false,
       };
+    case LEADS.UPDATE:
+      console.warn(state.leads);
+      const items = state.leads.map(x =>
+        x._id === action.payload._id ? action.payload : x,
+      );
+      return {
+        leads: items,
+        loading: false,
+      };
+    case LEADS.LOADMORE:
+      return {
+        leads: action.payload,
+        loading: false,
+      };
 
     case LEADS.FAIL:
       return getDefaultState();

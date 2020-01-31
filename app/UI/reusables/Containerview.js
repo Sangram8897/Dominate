@@ -16,7 +16,7 @@ const Containerview = props => {
   return (
     <>
       {/* {!netInfo.isConnected && <NoInternetBar />} */}
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView  style={styles.container}>
         <ImageBackground
           source={require('images/authbackImage/back2.png')}
           style={{height: '100%', width: '100%', resizeMode: 'contain'}}>

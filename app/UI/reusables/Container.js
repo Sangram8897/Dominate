@@ -29,6 +29,7 @@ const styles = {
     backgroundColor: 'rgba(0, 0, 0, 0.15)',
     justifyContent: 'center',
     ...StyleSheet.absoluteFillObject,
+    borderRadius:15,
     zIndex: 9,
   },
   container: {

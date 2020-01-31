@@ -29,7 +29,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 const Login = props => {
   const {width, height} = useDimensions().window;
   const [_logindata, set_logindata] = useState({
-    _workspace: 'domain102',
+    _workspace: 'domain222',
     _email: 'sangrampaste9788@gmail.com',
     _password: '123456',
   });
@@ -87,7 +87,6 @@ const Login = props => {
       }
       props.setloading(false);
     } catch (err) {
-      console.warn(err);
       props.setloading(false);
     }
   };
@@ -95,6 +94,7 @@ const Login = props => {
   return (
     <View
       style={{flex: 1, width: '100%', alignSelf: 'center', overflow: 'hidden'}}>
+        <KeyboardAvoidingView>
       <View
         style={{
           height: Size.OF12,
@@ -199,6 +199,7 @@ const Login = props => {
           textColor={Color.white}
         />
       </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };

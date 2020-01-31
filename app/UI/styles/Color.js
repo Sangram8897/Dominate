@@ -9,6 +9,7 @@ const Color = {
   light_gray: '#CEC7C7',
   gray: 'gray',
   dark_gray: '',
+  transparent_gray:'rgba(0, 0, 0, 0.15)',
 
   skyblue: 'skyblue',
   light_blue: '',

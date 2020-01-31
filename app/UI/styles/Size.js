@@ -18,6 +18,7 @@ const Size = {
   OF16: responsiveHeight(16),
   OF17: responsiveHeight(17),
   OF20: responsiveHeight(20),
+  OF24: responsiveHeight(24),
   OF25: responsiveHeight(25),
   OF30: responsiveHeight(30),
   OF35: responsiveHeight(35),

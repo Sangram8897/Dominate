@@ -26,14 +26,14 @@ export const AUTHENTICATE = data => async dispatch => {
   if (result.status === 200) {
     const res = await result.json();
     const TokenData = await jwt_decode(JSON.stringify(res.token));
-    console.warn(res.token)
+    console.warn(res.token);
     const userData = {
       token: res.token,
       refresh_token: res.refresh_token,
       exp: TokenData.exp,
     };
     AsyncStorage.setItem('userData', JSON.stringify(userData));
-    await dispatch({type: TAG.UP, payload:{}});
+    await dispatch({type: TAG.UP, payload: {}});
     dispatch(LOGIN(res));
   } else {
     errorHandler(result);

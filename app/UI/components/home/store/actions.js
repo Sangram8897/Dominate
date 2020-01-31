@@ -20,8 +20,8 @@ export const MEETINGS_COUNT = {
 };
 export const GET_ALL_LEADS_COUNT = () => async dispatch => {
     await dispatch({type: LEADS_COUNT.LOADING});
-  console.warn('getting soon');
+  // console.warn('getting soon');
 };
 export const GET_ALL_MEETINGS_COUNT = () => async dispatch => {
-  console.warn('getting soon');
+  // console.warn('getting soon');
 };
