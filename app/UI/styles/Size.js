@@ -1,4 +1,5 @@
 import {responsiveHeight} from './../../utils/Responsive';
+import RF from './ResponsiveFontSize/RF';
 
 const Size = {
   OF1: responsiveHeight(1),
@@ -11,14 +12,28 @@ const Size = {
   OF8: responsiveHeight(8),
   OF9: responsiveHeight(9),
   OF10: responsiveHeight(10),
+  OF11: responsiveHeight(11),
+  OF12: responsiveHeight(12),
+  OF13: responsiveHeight(13),
+  OF14: responsiveHeight(14),
   OF15: responsiveHeight(15),
+  OF16: responsiveHeight(16),
+  OF17: responsiveHeight(17),
+  OF18: responsiveHeight(18),
+  OF19: responsiveHeight(19),
   OF20: responsiveHeight(20),
+  OF24: responsiveHeight(24),
   OF25: responsiveHeight(25),
   OF30: responsiveHeight(30),
   OF35: responsiveHeight(35),
   OF40: responsiveHeight(40),
   OF45: responsiveHeight(45),
   OF50: responsiveHeight(50),
+  OF65: responsiveHeight(65),
+  OF75: responsiveHeight(75),
+  OF78: responsiveHeight(78),
+  OF80: responsiveHeight(80),
+  OF85: responsiveHeight(85),
 };
 
 export default Size;
